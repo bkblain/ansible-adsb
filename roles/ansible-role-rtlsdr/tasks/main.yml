@@ -1,0 +1,15 @@
+---
+
+- name: Install RTL-SDR
+  ansible.builtin.package:
+    name: rtl-sdr
+    state: present
+
+- name: Configure USB Rules for the ADS-B User to Access RTL-SDR Device
+  ansible.builtin.get_url:
+    url: https://raw.githubusercontent.com/osmocom/rtl-sdr/master/rtl-sdr.rules
+    dest: /etc/udev/rules.d/
+
+- name: Restart UDEV for RTL-SDR Rules to Take Affect
+  ansible.builtin.shell:
+    cmd: udevadm control --reload-rules && udevadm trigger

@@ -1,0 +1,20 @@
+---
+- name: Create the Kafka User
+  ansible.builtin.user:
+    name: kafka
+
+- name: Download the latest Kafka checksum
+  ansible.builtin.uri:
+    url: https://downloads.apache.org/kafka/3.0.0/kafka_2.13-3.0.0.tgz.sha512
+    return_content: yes
+  register: url_sha512
+
+- set_fact:
+    kafka_checksum: "{{ url_sha512.content.split(':')[1] }}"
+
+- name: Download the latest Kafka
+  ansible.builtin.get_url:
+    url: https://downloads.apache.org/kafka/3.0.0/kafka_2.13-3.0.0.tgz
+    dest: /tmp/
+    checksum: sha512:{{ kafka_checksum }}
+
