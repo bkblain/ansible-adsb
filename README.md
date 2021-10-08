@@ -6,7 +6,7 @@
   * copy python files
   * setup crontab
   * create user profile to contain and run python files
-
+  * update the kafka log location
 
 
 
