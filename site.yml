@@ -5,21 +5,5 @@
   become: yes
   become_user: root
   roles:
+    - "ansible-role-adsb-streamer"
     - "ansible-role-kafka"
-    - "ansible-role-rtlsdr"
-      
-  # tasks:
-
-  #   - name: Install Python3
-  #     ansible.builtin.package:
-  #       name: python3
-  #       state: present
-    
-  #   - name: Install ADS-B Python Module
-  #     become: yes
-  #     become_user: adsb
-  #     ansible.builtin.pip:
-  #       name: https://github.com/bkblain/aircraft-adsb/releases/download/v0.1-alpha/adsb-0.1.0-py3-none-any.whl
-  #       extra_args: --user --upgrade
-  #       executable: pip3
-  

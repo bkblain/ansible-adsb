@@ -1,0 +1,30 @@
+---
+
+- name: Create the ADS-B Group
+  ansible.builtin.group:
+    name: adsb
+    state: present
+
+# plugdev is a role defined in the RTL-SDR rules to allow acccess
+- name: Create the ADS-B User
+  ansible.builtin.user:
+    name: adsb
+    groups: adsb, plugdev
+
+- name: Install Python3
+  ansible.builtin.package:
+    name: python3
+    state: present
+
+- name: Install Python3 pip
+  ansible.builtin.package:
+    name: python3-pip
+    state: present
+
+- name: Install ADS-B Python Module
+  become: yes
+  become_user: adsb
+  ansible.builtin.pip:
+    name: https://github.com/bkblain/aircraft-adsb/releases/download/v0.1-alpha/adsb-0.1.0-py3-none-any.whl
+    extra_args: --user --upgrade
+    executable: pip3

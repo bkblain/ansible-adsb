@@ -38,3 +38,21 @@ configure the KAFKA_HOME environment variable
 (needs to go into kafka user shell config to persist after restart)
 
 Create systemd services for zookeeper and kafka
+
+
+
+
+
+## Getting Started
+
+From the root directory, install all the role dependencies
+
+```
+ansible-galaxy install -r roles/requirements.yml
+```
+
+Run the playbook
+
+```
+ansible-playbook site.yml -kK
+```
