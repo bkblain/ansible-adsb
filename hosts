@@ -1,8 +1,0 @@
-
-localhost ansible_connection=local
-
-[production]
-fractal.local
-
-[production:vars]
-ansible_connection=ssh
